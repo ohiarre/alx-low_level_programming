@@ -1,46 +1,48 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include "main.h"
+
 /**
- * alloc_grid - prints a grid of integers
- * @width: width of the grid
- * @height: height of the grid
- *
- * Return: pointer..
+ * _strlen - find length of a string
+ * @s: string
+ * Return: int
  */
-int **alloc_grid(int width, int height)
+
+
+int _strlen(char *s)
 {
-int **s, r, c;
+	int size = 0;
+	for (; s[size] != '\0'; size++)
+		;
+	return (size);
+}
 
-	if (width <= 0 || height <= 0)
-	{
+/**
+ * *str_concat - concatenates two strings
+ * @s1: string 1
+ * @s2: string 2
+ * Return: pointer
+ */
+
+char *str_concat(char *s1, char *s2)
+{
+
+	int size1 = _strlen(s1), size2 = _strlen(s2), i;
+	char *m = malloc((size1 + size2) * sizeof(char) + 1);
+	if (m == NULL)
 		return (NULL);
-	}
+	if (s1 == NULL)
+		s1 = "";
+	if (s2 == NULL)
+		s2 = "";
 
-	s = malloc(sizeof(int *) * height);
-	if (s == NULL)
+	for (i = 0; i <= size1 + size2; i++)
 	{
-		return (NULL);
+		if (i < size1)
+			m[i] = s1[i];
+		else
+			m[i] = s2[i - size1];
 	}
 
-	for (r = 0; r < height; r++)
-	{
-		s[r] = malloc(sizeof(int) * width);
-
-		if (s[r] == NULL)
-		{
-			for (; r >= 0; r--)
-			{
-				free(s[r]);
-			}
-			free(s);
-			return (NULL);
-		}
-
-		for (c = 0; c <= width; c++)
-		{
-			s[r][c] = 0;
-		}
-	}
-	return (s);
-
+	return (m);
 }
