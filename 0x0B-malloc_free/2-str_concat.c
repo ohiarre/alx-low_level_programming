@@ -1,48 +1,52 @@
 #include "main.h"
-#include <stdlib.h>
 #include <stdio.h>
-
+#include <stdlib.h>
 /**
- * _strlen - find length of a string
- * @s: string
- * Return: int
- */
-
-
+* _strlen - Swaps integers wih pointers.
+*
+* @s: is a pointer to a char
+*
+* Return: Always 0.
+*/
 int _strlen(char *s)
 {
-	int size = 0;
-	for (; s[size] != '\0'; size++)
-		;
-	return (size);
+int i = 0;
+while (*(s + i) != '\0')
+i++;
+return (i);
 }
-
 /**
- * *str_concat - concatenates two strings
- * @s1: string 1
- * @s2: string 2
- * Return: pointer
- */
-
+* str_concat - Concatenates 2 strings..
+*
+* @s1: First string.
+* @s2: Second string.
+*
+* Return: Returns the created array.
+**/
 char *str_concat(char *s1, char *s2)
 {
-
-	int size1 = _strlen(s1), size2 = _strlen(s2), i;
-	char *m = malloc((size1 + size2) * sizeof(char) + 1);
-	if (m == NULL)
-		return (NULL);
-	if (s1 == NULL)
-		s1 = "";
-	if (s2 == NULL)
-		s2 = "";
-
-	for (i = 0; i <= size1 + size2; i++)
-	{
-		if (i < size1)
-			m[i] = s1[i];
-		else
-			m[i] = s2[i - size1];
-	}
-
-	return (m);
+int i, j, size1, size2, totSize;
+char *ar;
+if (s1 == NULL)
+s1 = "";
+if (s2 == NULL)
+s2 = "";
+size1 = _strlen(s1);
+size2 = _strlen(s2);
+totSize = (size1 + size2)+1;
+ar = malloc(totSize *sizeof(char));
+if (ar == NULL)
+return (NULL);
+else
+{
+for (i = 0; i < size1; i++)
+ar[i] = s1[i];
+for (j = 0; j < size2; j++)
+{
+ar[i] = s2[j];
+i++;
+}
+ar[i + 1] = '\0';
+return (ar);
+}
 }
