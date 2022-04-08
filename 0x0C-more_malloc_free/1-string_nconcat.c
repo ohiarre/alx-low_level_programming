@@ -1,32 +1,51 @@
-#include <stdlib.h>
+#include "holberton.h"
 
 /**
- * _strdup - copy
- * @str: pointer to string
- * Return: pointer
+ * string_nconcat - concatenates two strings.
+ * @s1: first string
+ * @s2: second string
+ * @n: index
+ * Return: char pointer
  */
 
-char *_strdup(char *str)
+char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	char *s;
-	int i = 0, j;
+	char *p;
+	unsigned int size1 = 0, size2 = 0, i;
 
-	if (!str)
-		return (NULL);
+	if (s1 == NULL)
+		s1 = "";
 
-	while (*(str + i))
-		i++;
-	i++;
-	s = malloc(sizeof(char) * i);
+	if (s2 == NULL)
+		s2 = "";
 
-	if (s == NULL)
+	while (s1[size1] != '\0')
 	{
-		return (NULL);
+		size1++;
 	}
 
-	for (j = 0; j <= i; j++)
+	while (s2[size2] != '\0')
 	{
-		s[j] = str[j];
+		size2++;
 	}
-	return (s);
+
+	if (n > size2)
+	n = size2;
+	p = malloc((size1 + n + 1) * sizeof(char));
+
+	if (p == NULL)
+		return (0);
+
+	for (i = 0; i < size1; i++)
+	{
+		p[i] = s1[i];
+	}
+
+	for (; i < (size1 + n); i++)
+	{
+		p[i] = s2[i - size1];
+	}
+	p[i] = '\0';
+
+return (p);
 }
