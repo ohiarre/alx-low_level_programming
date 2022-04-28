@@ -18,9 +18,3 @@ size_t listint_len(const listint_t *h)
 	}
 	return (nnodes);
 }
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
